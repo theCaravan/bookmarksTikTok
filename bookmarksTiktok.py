@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 
+import os
 import random
 import webbrowser
 
 TXT_FILE = "_bookmarks.txt"
 BOOKMARKS = []
 
-with open(TXT_FILE, "r", encoding = "utf-8") as fr:
-    for line in fr.readlines():
-        BOOKMARKS.append(line.strip())
-    fr.close()
-
 def open_bookmarks(bookmarks):
+
+    # Set the directory of the current script location
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+    with open(TXT_FILE, "r", encoding = "utf-8") as fr:
+        for line in fr.readlines():
+            BOOKMARKS.append(line.strip())
+        fr.close()
+
     random.shuffle(bookmarks)
     total_bookmarks = len(bookmarks)
     
@@ -25,10 +30,12 @@ def open_bookmarks(bookmarks):
             break
 
 def main():
-    if BOOKMARKS:
+    try:
         open_bookmarks(BOOKMARKS)
-    else:
-        print("No bookmarks found.")
+    
+    except Exception as e:
+        print(repr(e))
+        input("Press Enter to exit")
 
 if __name__ == "__main__":
     main()
