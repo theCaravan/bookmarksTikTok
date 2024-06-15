@@ -7,6 +7,8 @@ import webbrowser
 TXT_FILE = "_bookmarks.txt"
 BOOKMARKS = []
 
+print("Version 1.1")
+
 def open_bookmarks(bookmarks):
 
     # Set the directory of the current script location
@@ -21,7 +23,7 @@ def open_bookmarks(bookmarks):
     total_bookmarks = len(bookmarks)
     
     for i, bookmark in enumerate(bookmarks):
-        print(f"Opening bookmark {i + 1:02}/{total_bookmarks:02}: {bookmark.split('/')[-1]}")
+        print(f"Opening bookmark {i + 1:02}/{total_bookmarks:02}: {bookmark.split('/')[-1]}", end=" - ")
         webbrowser.open(bookmark)
         
         user_input = input("Press Enter to open the next bookmark, or 'n' to exit: ")
